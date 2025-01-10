@@ -1,0 +1,221 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Bar Chart - Material Charts">
+  <h1>Bar Chart</h1>
+
+  <p>The Bar Chart component allows you to create beautiful, animated bar charts with customizable styles and interactions.</p>
+
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Bar Chart Example" class="example-image" />
+
+  <h2>Usage</h2>
+
+  <pre><code>import 'package:flutter/material.dart';
+import 'package:material_charts/material_charts.dart';
+
+MaterialBarChart(
+  data: [
+    BarChartData(value: 30, label: 'Apples', color: Colors.red),
+    BarChartData(value: 70, label: 'Oranges'),
+    BarChartData(value: 50, label: 'Bananas', color: Colors.yellow),
+  ],
+  style: BarChartStyle(
+    gridColor: Colors.grey.shade300,
+    backgroundColor: Colors.white,
+    labelStyle: TextStyle(fontSize: 14),
+    valueStyle: TextStyle(fontSize: 12),
+    barSpacing: 0.3,
+    cornerRadius: 6.0,
+    gradientEffect: true,
+    gradientColors: [Colors.purple, Colors.cyan],
+  ),
+  showGrid: true,
+  showValues: true,
+);</code></pre>
+
+  <h2>Properties</h2>
+
+  <h3>BarChartData</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>value</td>
+        <td>double</td>
+        <td>Value of the bar</td>
+        <td>Required</td>
+      </tr>
+      <tr>
+        <td>label</td>
+        <td>String</td>
+        <td>Name of the bar</td>
+        <td>Required</td>
+      </tr>
+      <tr>
+        <td>color</td>
+        <td>Color?</td>
+        <td>Color of the bar</td>
+        <td>Colors.blue</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>BarChartStyle</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>gridColor</td>
+        <td>Color</td>
+        <td>Color of the grid</td>
+        <td>Colors.grey</td>
+      </tr>
+      <tr>
+        <td>backgroundColor</td>
+        <td>Color</td>
+        <td>Chart background color</td>
+        <td>Colors.white</td>
+      </tr>
+      <tr>
+        <td>labelStyle</td>
+        <td>TextStyle?</td>
+        <td>Text style for bar labels</td>
+        <td>null</td>
+      </tr>
+      <!-- Add more style properties -->
+    </tbody>
+  </table>
+
+  <h2>Features</h2>
+  <ul>
+    <li>📊 Animated bars with hover and tap interactions</li>
+    <li>🏷️ Customizable bar colors and labels</li>
+    <li>📏 Optional gridlines and padding</li>
+    <li>🕒 Animation support with curve control</li>
+    <li>🌈 Gradient or solid color options</li>
+  </ul>
+
+  <h2>Examples</h2>
+
+  <h3>Basic Bar Chart</h3>
+  <pre><code>MaterialBarChart(
+  data: [
+    BarChartData(value: 30, label: 'A'),
+    BarChartData(value: 70, label: 'B'),
+    BarChartData(value: 50, label: 'C'),
+  ],
+  showGrid: true,
+  showValues: true,
+);</code></pre>
+
+  <h3>Styled Bar Chart</h3>
+  <pre><code>MaterialBarChart(
+  data: [
+    BarChartData(value: 30, label: 'A', color: Colors.blue),
+    BarChartData(value: 70, label: 'B', color: Colors.green),
+    BarChartData(value: 50, label: 'C', color: Colors.orange),
+  ],
+  style: BarChartStyle(
+    gridColor: Colors.grey.shade200,
+    backgroundColor: Colors.white,
+    labelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+    valueStyle: TextStyle(fontSize: 12, color: Colors.grey),
+    barSpacing: 0.4,
+    cornerRadius: 8.0,
+  ),
+  showGrid: true,
+  showValues: true,
+);</code></pre>
+</DocsLayout>
+
+<style>
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    margin: 1.5rem 0 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .example-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  pre {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: #228be6;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

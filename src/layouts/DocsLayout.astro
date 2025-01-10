@@ -1,0 +1,143 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <div class="docs-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="logo">Material Charts</a>
+      </div>
+      <nav>
+        <div class="nav-section">
+          <h3>Getting Started</h3>
+          <ul>
+            <li><a href="/docs/installation">Installation</a></li>
+            <li><a href="/docs/overview">Overview</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h3>Charts</h3>
+          <ul>
+            <li><a href="/docs/charts/bar">Bar Chart</a></li>
+            <li><a href="/docs/charts/stacked-bar">Stacked Bar Chart</a></li>
+            <li><a href="/docs/charts/line">Line Chart</a></li>
+            <li><a href="/docs/charts/multi-line">Multi-Line Chart</a></li>
+            <li><a href="/docs/charts/pie">Pie Chart</a></li>
+            <li><a href="/docs/charts/hollow-semi-circle">Hollow Semi Circle</a></li>
+            <li><a href="/docs/charts/gantt">Gantt Chart</a></li>
+            <li><a href="/docs/charts/candlestick">Candlestick Chart</a></li>
+            <li><a href="/docs/charts/area">Area Chart</a></li>
+          </ul>
+        </div>
+        <div class="nav-section">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/docs/best-practices">Best Practices</a></li>
+            <li><a href="/docs/troubleshooting">Troubleshooting</a></li>
+            <li><a href="/docs/contributing">Contributing</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+    <main class="content">
+      <slot />
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .docs-container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    width: 300px;
+    background: white;
+    border-right: 1px solid rgba(46, 80, 119, 0.1);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar-header {
+    padding: 2rem;
+    border-bottom: 1px solid rgba(46, 80, 119, 0.1);
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .nav-section {
+    padding: 1.5rem 2rem;
+  }
+
+  .nav-section h3 {
+    color: var(--primary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .nav-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-section a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    display: block;
+    transition: all 0.2s;
+    border-radius: 6px;
+  }
+
+  .nav-section a:hover {
+    color: var(--secondary);
+    background: rgba(77, 161, 169, 0.1);
+    padding-left: 1rem;
+  }
+
+  .content {
+    flex: 1;
+    padding: 3rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .docs-container {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: static;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+  }
+</style>

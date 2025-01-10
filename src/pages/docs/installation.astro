@@ -1,0 +1,92 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Installation - Material Charts">
+  <h1>Installation</h1>
+  
+  <p>Add <a href="https://pub.dev/packages/material_charts" >Material Charts </a>to your Flutter project by adding the following to your <code>pubspec.yaml</code>:</p>
+
+  <pre><code>dependencies:
+  material_charts: latest_version</code></pre>
+
+  <h2>Basic Usage</h2>
+
+  <p>Here's a simple example of how to create a bar chart:</p>
+
+  <pre><code>import 'package:flutter/material.dart';
+import 'package:material_charts/material_charts.dart';
+
+MaterialBarChart(
+  data: [
+    BarChartData(value: 30, label: 'A'),
+    BarChartData(value: 70, label: 'B'),
+    BarChartData(value: 50, label: 'C'),
+  ],
+  style: BarChartStyle(
+    gridColor: Colors.grey.shade300,
+    backgroundColor: Colors.white,
+  ),
+  showGrid: true,
+  showValues: true,
+);</code></pre>
+
+  <h2>Next Steps</h2>
+  
+  <p>Check out the individual chart documentation to learn more about specific chart types and their features:</p>
+
+  <ul>
+    <li><a href="/docs/charts/bar">Bar Chart</a></li>
+    <li><a href="/docs/charts/line">Line Chart</a></li>
+    <li><a href="/docs/charts/pie">Pie Chart</a></li>
+    <li>And more...</li>
+  </ul>
+</DocsLayout>
+
+<style>
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  pre {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: #228be6;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>

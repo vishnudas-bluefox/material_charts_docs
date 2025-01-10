@@ -1,0 +1,248 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Material Charts - Beautiful Flutter Charts">
+  <main>
+    <nav class="navbar">
+      <div class="nav-content">
+        <a href="/" class="logo">Material Charts</a>
+        <div class="nav-links">
+          <a href="/docs/installation">Documentation</a>
+          <a href="https://github.com/vishnudas-bluefox/material_charts" class="github-link">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Beautiful Charts for Flutter</h1>
+        <p class="subtitle">Create stunning, responsive, and customizable charts with <a href="https://pub.dev/packages/material_charts" >Material Charts </a></p>
+        <div class="cta-buttons">
+          <a href="/docs/installation" class="primary-button">Get Started</a>
+          <a href="https://github.com/vishnudas-bluefox/material_charts" class="secondary-button">View on GitHub</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Chart Example" />
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Material Design</h3>
+          <p>Beautiful charts following Material Design principles</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>Animations</h3>
+          <p>Smooth animations with configurable duration and curves</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Multiple Chart Types</h3>
+          <p>Support for Bar, Line, Pie, and many more chart types</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎭</div>
+          <h3>Customizable</h3>
+          <p>Extensive customization options for all chart elements</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(46, 80, 119, 0.1);
+    z-index: 100;
+  }
+
+  .nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .github-link {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: var(--primary);
+    color: white !important;
+  }
+
+  main {
+    margin-top: 4rem;
+  }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    gap: 4rem;
+  }
+
+  .hero-content {
+    flex: 1;
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    line-height: 1.4;
+  }
+
+  .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(46, 80, 119, 0.1);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .primary-button, .secondary-button {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .primary-button {
+    background: var(--gradient);
+    color: white;
+  }
+
+  .secondary-button {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+  }
+
+  .primary-button:hover, .secondary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 80, 119, 0.15);
+  }
+
+  .features {
+    background: white;
+    padding: 8rem 2rem;
+  }
+
+  .features h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    color: var(--primary);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--background);
+    padding: 2rem;
+    border-radius: 16px;
+    transition: transform 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+
+  .feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
+
+    .cta-buttons {
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
