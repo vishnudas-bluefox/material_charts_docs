@@ -3,112 +3,310 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 
 <DocsLayout title="Bar Chart - Material Charts">
-  <h1>Bar Chart</h1>
+  <h1>Stacked Bar Chart</h1>
 
-  <p>The Bar Chart component allows you to create beautiful, animated bar charts with customizable styles and interactions.</p>
+  <p>The <b> Stacked Bar Chart </b>in the <a href="https://pub.dev/packages/material_charts" >Material Charts Flutter package </a> is an exceptional tool for developers looking to create dynamic and informative data visualizations in their Flutter applications. This powerful charting component allows users to visualize multiple data series stacked on top of each other, making it easy to compare parts of a whole across various categories. With its extensive customization options, including color schemes, labels, and interactive features, the Stacked Bar Chart enhances user engagement and provides deeper insights into data composition and trends. Ideal for dashboards, reports, and any application requiring effective data representation, the Stacked Bar Chart is a must-have for Flutter developers aiming to deliver a rich and interactive user experience.</p>
 
-  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Bar Chart Example" class="example-image" />
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/stacked_bar_chart.gif" alt=" Stacked Bar Chart Example" class="example-image" />
 
   <h2>Usage</h2>
 
-  <pre><code>import 'package:flutter/material.dart';
-import 'package:material_charts/material_charts.dart';
-
-MaterialBarChart(
-  data: [
-    BarChartData(value: 30, label: 'Apples', color: Colors.red),
-    BarChartData(value: 70, label: 'Oranges'),
-    BarChartData(value: 50, label: 'Bananas', color: Colors.yellow),
-  ],
-  style: BarChartStyle(
-    gridColor: Colors.grey.shade300,
-    backgroundColor: Colors.white,
-    labelStyle: TextStyle(fontSize: 14),
-    valueStyle: TextStyle(fontSize: 12),
-    barSpacing: 0.3,
-    cornerRadius: 6.0,
-    gradientEffect: true,
-    gradientColors: [Colors.purple, Colors.cyan],
-  ),
-  showGrid: true,
-  showValues: true,
-);</code></pre>
+  <pre><code>
+    import 'package:flutter/material.dart';
+    import 'package:material_charts_tests/material_charts.dart';
+    
+    final data = [
+      const StackedBarData(
+        label: 'Q1',
+        segments: [
+          StackedBarSegment(
+              value: 30,
+              color: Color.fromRGBO(46, 142, 149, 1),
+              label: 'Product A'),
+          StackedBarSegment(
+              value: 35,
+              color: Color.fromRGBO(46, 142, 149, 0.342),
+              label: 'Product B'),
+        ],
+      ),
+      const StackedBarData(
+        label: 'Q2',
+        segments: [
+          StackedBarSegment(
+              value: 50, color: Color(0xFF605e70), label: 'Product A'),
+          StackedBarSegment(
+              value: 20, color: Color(0xFFa19dc7), label: 'Product B'),
+          StackedBarSegment(
+              value: 15, color: Color(0xFFf3f2fe), label: 'Product C'),
+        ],
+      ),
+      const StackedBarData(
+        label: 'Q3',
+        segments: [
+          StackedBarSegment(
+              value: 40,
+              color: Color.fromRGBO(46, 142, 149, 1),
+              label: 'Product A'),
+          StackedBarSegment(
+              value: 15,
+              color: Color.fromRGBO(46, 142, 149, 0.342),
+              label: 'Product B'),
+        ],
+      ),
+      const StackedBarData(
+        label: 'Q4',
+        segments: [
+          StackedBarSegment(
+              value: 20, color: Color(0xFF605e70), label: 'Product A'),
+          StackedBarSegment(
+              value: 50, color: Color(0xFFa19dc7), label: 'Product B'),
+          StackedBarSegment(
+              value: 25, color: Color(0xFFf3f2fe), label: 'Product C'),
+        ],
+      ),
+      // Add more StackedBarData items...
+    ];
+    MaterialStackedBarChart(
+      showGrid: true,
+      horizontalGridLines: 5,
+      showValues: true,
+      data: data,
+      width: 400,
+      height: 300,
+      style: StackedBarChartStyle(
+        gridColor: Colors.black,
+        // showSegmentLabels: true,
+        cornerRadius: 3,
+        barSpacing: .7,
+        valueStyle: const TextStyle(
+          // backgroundColor: Color.fromARGB(68, 255, 255, 255),
+          color: Colors.black87,
+        ),
+        labelStyle: const TextStyle(
+          color: Colors.grey,
+        ),
+        yAxisConfig: YAxisConfig(
+          minValue: 0,
+          maxValue: 100,
+          divisions: 5,
+          showGridLines: false,
+          labelStyle: TextStyle(
+            fontSize: 12,
+            color: Colors.grey[600],
+          ),
+        ),
+      ),
+    );</code></pre>
 
   <h2>Properties</h2>
 
-  <h3>BarChartData</h3>
+  <h3>StackedBarChartData</h3>
   <table>
     <thead>
       <tr>
-        <th>Property</th>
-        <th>Type</th>
+        <th>Class</th>
         <th>Description</th>
-        <th>Default</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>value</td>
-        <td>double</td>
-        <td>Value of the bar</td>
-        <td>Required</td>
+        <td>StackedBarSegment</td>
+        <td>Represents a single segment in a stacked bar, defined by its value, color, and an optional label.</td>
       </tr>
       <tr>
-        <td>label</td>
-        <td>String</td>
-        <td>Name of the bar</td>
-        <td>Required</td>
+        <td>StackedBarData</td>
+        <td>Represents the complete data for a single bar, consisting of multiple segments with a common label.</td>
       </tr>
       <tr>
-        <td>color</td>
-        <td>Color?</td>
-        <td>Color of the bar</td>
-        <td>Colors.blue</td>
+        <td>YAxisConfig</td>
+        <td>Configuration class for customizing the Y-axis, including min/max values, grid lines, and label styles.</td>
+      </tr>
+      <tr>
+        <td>StackedBarChartStyle</td>
+        <td>Configuration class for customizing the appearance of the stacked bar chart, including colors, spacing, and animations.</td>
       </tr>
     </tbody>
   </table>
 
-  <h3>BarChartStyle</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>gridColor</td>
-        <td>Color</td>
-        <td>Color of the grid</td>
-        <td>Colors.grey</td>
-      </tr>
-      <tr>
-        <td>backgroundColor</td>
-        <td>Color</td>
-        <td>Chart background color</td>
-        <td>Colors.white</td>
-      </tr>
-      <tr>
-        <td>labelStyle</td>
-        <td>TextStyle?</td>
-        <td>Text style for bar labels</td>
-        <td>null</td>
-      </tr>
-      <!-- Add more style properties -->
-    </tbody>
-  </table>
+  <h3>StackedBarSegment</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>double</td>
+      <td>The numerical value of the segment contributing to the total.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Color</td>
+      <td>The color used to render this segment in the chart.</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>String?</td>
+      <td>An optional label to describe the segment, used for tooltips/legends.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <h2>Features</h2>
-  <ul>
-    <li>📊 Animated bars with hover and tap interactions</li>
-    <li>🏷️ Customizable bar colors and labels</li>
-    <li>📏 Optional gridlines and padding</li>
-    <li>🕒 Animation support with curve control</li>
-    <li>🌈 Gradient or solid color options</li>
-  </ul>
+<h3>StackedBarData</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>Label describing the entire bar, often used for X-axis/legend.</td>
+    </tr>
+    <tr>
+      <td>segments</td>
+      <td>List&lt;StackedBarSegment&gt;</td>
+      <td>List of segments that make up this bar.</td>
+    </tr>
+    <tr>
+      <td>totalValue</td>
+      <td>double</td>
+      <td>Computes the total value by summing all segment values.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>YAxisConfig</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>minValue</td>
+      <td>double?</td>
+      <td>Minimum value displayed on the Y-axis (default: 0).</td>
+    </tr>
+    <tr>
+      <td>maxValue</td>
+      <td>double?</td>
+      <td>Maximum value displayed on the Y-axis (defaults to largest total).</td>
+    </tr>
+    <tr>
+      <td>divisions</td>
+      <td>int</td>
+      <td>Number of divisions on the Y-axis (default: 5).</td>
+    </tr>
+    <tr>
+      <td>showAxisLine</td>
+      <td>bool</td>
+      <td>Whether to display the vertical axis line (default: true).</td>
+    </tr>
+    <tr>
+      <td>showGridLines</td>
+      <td>bool</td>
+      <td>Whether to display horizontal grid lines (default: true).</td>
+    </tr>
+    <tr>
+      <td>labelStyle</td>
+      <td>TextStyle?</td>
+      <td>Text style for Y-axis labels.</td>
+    </tr>
+    <tr>
+      <td>axisWidth</td>
+      <td>double</td>
+      <td>Width allocated for rendering the Y-axis (default: 50.0).</td>
+    </tr>
+    <tr>
+      <td>labelFormatter</ <td>String Function(double)</td>
+      <td>Custom formatter for Y-axis values.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>StackedBarChartStyle</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gridColor</td>
+      <td>Color</td>
+      <td>Color of the grid lines (default: Colors.grey).</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>Color</td>
+      <td>Background color of the chart container (default: Colors.white).</td>
+    </tr>
+    <tr>
+      <td>labelStyle</td>
+      <td>TextStyle?</td>
+      <td>Text style for bar labels.</td>
+    </tr>
+    <tr>
+      <td>valueStyle</td>
+      <td>TextStyle?</td>
+      <td>Text style for value labels displayed on segments.</td>
+    </tr>
+    <tr>
+      <td>barSpacing</td>
+      <td>double</td>
+      <td>Spacing between bars as a fraction (default: 0.2).</td>
+    </tr>
+    <tr>
+      <td>cornerRadius</td>
+      <td>double</td>
+      <td>Corner radius applied to bars (default: 4.0).</td>
+    </tr>
+    <tr>
+      <td>animationDuration</td>
+      <td>Duration</td>
+      <td>Duration of the animation when rendering bars (default: 1500ms).</td>
+    </tr>
+    <tr>
+      <td>animationCurve</td>
+      <td>Curve</td>
+      <td>Animation curve applied during rendering (default: Curves.easeInOut).</td>
+    </tr>
+    <tr>
+      <td>yAxisConfig</td>
+      <td>YAxisConfig?</td>
+      <td>Optional Y-axis configuration for detailed control.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Features</h2>
+<ul>
+    <li>📊 Dynamic Stacking</li>
+    <li>🎨 Customizable Segment Colors</li>
+    <li>🏷️ Segment Labels</li>
+    <li>📏 Adjustable Bar Widths and Spacing</li>
+    <li>📅 Animation Support</li>
+    <li>📏 Optional Gridlines</li>
+    <li>📐 Padding Control</li>
+    <li>🌈 Gradient and Solid Color Options</li>
+    <li>🛠️ Custom Y-axis Configuration</li>
+    <li>📊 Responsive Sizing</li>
+</ul>
 
   <h2>Examples</h2>
 
