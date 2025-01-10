@@ -3,111 +3,278 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 
 <DocsLayout title="Bar Chart - Material Charts">
-  <h1>Bar Chart</h1>
+  <h1>Pie Chart / Donut Chart</h1>
 
-  <p>The Bar Chart component allows you to create beautiful, animated bar charts with customizable styles and interactions.</p>
+  <p>The Pie Chart / Donut Chart components in the <a href="https://pub.dev/packages/material_charts" >Material Charts Flutter package </a> are essential tools for developers looking to create visually appealing and informative data visualizations in their Flutter applications. These charting solutions excel at representing data proportions and percentages, making it easy for users to understand the composition of a dataset at a glance. With customizable segments, vibrant colors, and interactive features, both the Pie Chart and Donut Chart enhance user engagement and provide clear insights into data distribution. Ideal for dashboards, reports, and any application that requires effective data representation, these charts empower developers to deliver a compelling and intuitive user experience while effectively communicating key information.</p>
 
-  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Bar Chart Example" class="example-image" />
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/pie_chart.gif" alt="Bar Chart Example" class="example-image" />
 
   <h2>Usage</h2>
 
-  <pre><code>import 'package:flutter/material.dart';
-import 'package:material_charts/material_charts.dart';
+  <pre><code>final data = [
+    PieChartData(
+        value: 30,
+        label: 'Category A',
+        color: Color.fromARGB(255, 24, 86, 136)),
+    PieChartData(
+        value: 20, label: 'Category B', color: Color.fromARGB(255, 28, 60, 87)),
+    PieChartData(
+        value: 15, label: 'Category C', color: Color.fromARGB(255, 15, 27, 37)),
+  ];
 
-MaterialBarChart(
-  data: [
-    BarChartData(value: 30, label: 'Apples', color: Colors.red),
-    BarChartData(value: 70, label: 'Oranges'),
-    BarChartData(value: 50, label: 'Bananas', color: Colors.yellow),
-  ],
-  style: BarChartStyle(
-    gridColor: Colors.grey.shade300,
-    backgroundColor: Colors.white,
-    labelStyle: TextStyle(fontSize: 14),
-    valueStyle: TextStyle(fontSize: 12),
-    barSpacing: 0.3,
-    cornerRadius: 6.0,
-    gradientEffect: true,
-    gradientColors: [Colors.purple, Colors.cyan],
-  ),
-  showGrid: true,
-  showValues: true,
-);</code></pre>
+  return MaterialPieChart(
+    data: data,
+    width: 400,
+    height: 300,
+    padding: EdgeInsets.all(50),
+    style: PieChartStyle(
+      backgroundColor: const Color.fromARGB(255, 223, 219, 219),
+      // holeRadius: 0.5, // Creates a donut chart
+      showLabels: true,
+      showValues: true,
+      showLegend: true,
+    ),
+  );</code></pre>
 
   <h2>Properties</h2>
 
-  <h3>BarChartData</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>value</td>
-        <td>double</td>
-        <td>Value of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>label</td>
-        <td>String</td>
-        <td>Name of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>color</td>
-        <td>Color?</td>
-        <td>Color of the bar</td>
-        <td>Colors.blue</td>
-      </tr>
-    </tbody>
-  </table>
+<h3>PieChart</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PieChartData</td>
+      <td>Represents a single segment of the pie chart, including value, label, and optional color.</td>
+    </tr>
+    <tr>
+      <td>PieChartStyle</td>
+      <td>Configures the appearance and behavior of the pie chart, including colors, labels, and animations.</td>
+    </tr>
+    <tr>
+      <td>LabelPosition</td>
+      <td>Enum defining the position of labels (inside or outside the pie segments).</td>
+    </tr>
+    <tr>
+      <td>MaterialPieChart</td>
+      <td>The main widget for rendering the pie chart with interactive and styling options.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <h3>BarChartStyle</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>gridColor</td>
-        <td>Color</td>
-        <td>Color of the grid</td>
-        <td>Colors.grey</td>
-      </tr>
-      <tr>
-        <td>backgroundColor</td>
-        <td>Color</td>
-        <td>Chart background color</td>
-        <td>Colors.white</td>
-      </tr>
-      <tr>
-        <td>labelStyle</td>
-        <td>TextStyle?</td>
-        <td>Text style for bar labels</td>
-        <td>null</td>
-      </tr>
-      <!-- Add more style properties -->
-    </tbody>
-  </table>
+<h3>MaterialPieChart</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>data</td>
+      <td>List&lt;PieChartData&gt;</td>
+      <td>List of pie chart segments.</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>double</td>
+      <td>Width of the pie chart widget.</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>double</td>
+      <td>Height of the pie chart widget.</td>
+    </tr>
+    <tr>
+      <td>style</td>
+      <td>PieChartStyle</td>
+      <td>Styling configuration for the pie chart.</td>
+    </tr>
+    <tr>
+      <td>padding</td>
+      <td>EdgeInsets</td>
+      <td>Padding around the pie chart.</td>
+    </tr>
+    <tr>
+      <td>onAnimationComplete</td>
+      <td>VoidCallback?</td>
+      <td>Callback for when the animation completes.</td>
+    </tr>
+    <tr>
+      <td>interactive</td>
+      <td>bool</td>
+      <td>Whether the pie chart supports interactivity.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>PieChartData</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>double</td>
+      <td>The value represented by the pie segment.</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>String</td>
+      <td>The label associated with the pie segment.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Color?</td>
+      <td>Optional color for the pie segment.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>PieChartStyle</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>defaultColors</td>
+      <td>List&lt;Color&gt;</td>
+      <td>Default colors used for the pie segments.</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>Color</td>
+      <td>Background color for the pie chart.</td>
+    </tr>
+    <tr>
+      <td>labelStyle</td>
+      <td>TextStyle?</td>
+      <td>Style for segment labels.</td>
+    </tr>
+    <tr>
+      <td>valueStyle</td>
+      <td>TextStyle?</td>
+      <td>Style for segment values.</td>
+    </tr>
+    <tr>
+      <td>startAngle</td>
+      <td>double</td>
+      <td>Starting angle for the first pie segment.</td>
+    </tr>
+    <tr>
+      <td>holeRadius</td>
+      <td>double</td>
+      <td >Radius for a donut hole (0 for a full pie chart).</td>
+    </tr>
+    <tr>
+      <td>animationDuration</td>
+      <td>Duration</td>
+      <td>Duration of the animation for rendering the chart.</td>
+    </tr>
+    <tr>
+      <td>animationCurve</td>
+      <td>Curve</td>
+      <td>Curve of the animation.</td>
+    </tr>
+    <tr>
+      <td>showLabels</td>
+      <td>bool</td>
+      <td>Whether to show labels on the segments.</td>
+    </tr>
+    <tr>
+      <td>showValues</td>
+      <td>bool</td>
+      <td>Whether to show values on the segments.</td>
+    </tr>
+    <tr>
+      <td>labelOffset</td>
+      <td>double</td>
+      <td>Offset distance for labels from the segments.</td>
+    </tr>
+    <tr>
+      <td>showLegend</td>
+      <td>bool</td>
+      <td>Whether to display the legend.</td>
+    </tr>
+    <tr>
+      <td>legendPadding</td>
+      <td>EdgeInsets</td>
+      <td>Padding around the legend.</td>
+    </tr>
+    <tr>
+      <td>labelPosition</td>
+      <td>LabelPosition</td>
+      <td>Position of the labels (inside or outside).</td>
+    </tr>
+    <tr>
+      <td>showConnectorLines</td>
+      <td>bool</td>
+      <td>Whether to show connector lines from segments to labels.</td>
+    </tr>
+    <tr>
+      <td>connectorLineColor</td>
+      <td>Color</td>
+      <td>Color of the connector lines.</td>
+    </tr>
+    <tr>
+      <td>connectorLineStrokeWidth</td>
+      <td>double</td>
+      <td>Width of the connector lines.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>LabelPosition</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>inside</td>
+      <td>LabelPosition</td>
+      <td>Label is displayed inside the pie segment.</td>
+    </tr>
+    <tr>
+      <td>outside</td>
+      <td>LabelPosition</td>
+      <td>Label is displayed outside the pie segment.</td>
+    </tr>
+  </tbody>
+</table>
 
   <h2>Features</h2>
   <ul>
-    <li>📊 Animated bars with hover and tap interactions</li>
-    <li>🏷️ Customizable bar colors and labels</li>
-    <li>📏 Optional gridlines and padding</li>
-    <li>🕒 Animation support with curve control</li>
-    <li>🌈 Gradient or solid color options</li>
+      <li>📊 Segment Visualization</li>
+      <li>🎨 Customizable Colors</li>
+      <li>🔄 Smooth Animations</li>
+      <li>📏 Interactive Hover Effects</li>
+      <li>🏷️ Dynamic Labels and Values</li>
+      <li>📋 Legend Support</li>
+      <li>🔗 Connector Lines</li>
+      <li>📅 Animation Duration Customization</li>
+      <li>🗺️ Label Positioning</li>
+      <li>♿ Accessibility Features</li>
   </ul>
 
   <h2>Examples</h2>

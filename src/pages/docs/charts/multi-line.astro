@@ -3,112 +3,493 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 
 <DocsLayout title="Bar Chart - Material Charts">
-  <h1>Bar Chart</h1>
+  <h1>Multi-Line Chart</h1>
 
-  <p>The Bar Chart component allows you to create beautiful, animated bar charts with customizable styles and interactions.</p>
+  <p>The <b>Multi-Line Chart</b> in the <a href="https://pub.dev/packages/material_charts" >Material Charts Flutter package </a> is a powerful visualization tool designed for developers who want to display multiple data series simultaneously in their Flutter applications. This versatile charting component allows users to compare trends across different datasets, making it ideal for analyzing performance metrics, financial data, or any scenario where multiple variables need to be tracked over time. With features like smooth animations, customizable colors, and interactive tooltips, the Multi-Line Chart enhances user engagement and provides deeper insights into complex data relationships. Whether you're creating dashboards, reports, or any application that requires effective data visualization, the Multi-Line Chart in the Material Charts package is an excellent choice for delivering a rich and informative user experience.</p>
 
-  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Bar Chart Example" class="example-image" />
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/multi_line_chart.gif" alt="Bar Chart Example" class="example-image" />
 
   <h2>Usage</h2>
 
-  <pre><code>import 'package:flutter/material.dart';
-import 'package:material_charts/material_charts.dart';
+  <pre><code>
+    final series = [
+    const ChartSeries(
+      name: 'Revenue',
+      dataPoints: [
+        ChartDataPoint(value: 40, label: 'Jan'),
+        ChartDataPoint(value: 50, label: 'Feb'),
+        ChartDataPoint(value: 20, label: 'Mar'),
+        ChartDataPoint(value: 50, label: 'Jan'),
+        ChartDataPoint(value: 40, label: 'Feb'),
+        ChartDataPoint(value: 60, label: 'Mar'),
+      ],
+      color: Color.fromRGBO(116, 46, 149, 1),
+    ),
+    const ChartSeries(
+      name: 'Profit',
+      dataPoints: [
+        ChartDataPoint(value: 20, label: 'Jan'),
+        ChartDataPoint(value: 60, label: 'Feb'),
+        ChartDataPoint(value: 55, label: 'Mar'),
+        ChartDataPoint(value: 20, label: 'Jan'),
+        ChartDataPoint(value: 60, label: 'Feb'),
+        ChartDataPoint(value: 55, label: 'Mar'),
+      ],
+      color: Color.fromRGBO(46, 142, 149, 1),
+    ),
+  ];
 
-MaterialBarChart(
-  data: [
-    BarChartData(value: 30, label: 'Apples', color: Colors.red),
-    BarChartData(value: 70, label: 'Oranges'),
-    BarChartData(value: 50, label: 'Bananas', color: Colors.yellow),
-  ],
-  style: BarChartStyle(
-    gridColor: Colors.grey.shade300,
+  final style = MultiLineChartStyle(
     backgroundColor: Colors.white,
-    labelStyle: TextStyle(fontSize: 14),
-    valueStyle: TextStyle(fontSize: 12),
-    barSpacing: 0.3,
-    cornerRadius: 6.0,
-    gradientEffect: true,
-    gradientColors: [Colors.purple, Colors.cyan],
-  ),
-  showGrid: true,
-  showValues: true,
-);</code></pre>
+    colors: [Colors.blue, Colors.green, Colors.red],
+    smoothLines: true,
+    showPoints: true,
+    animation: const ChartAnimation(
+      duration: Duration(milliseconds: 5000),
+    ),
+    tooltipStyle: const MultiLineTooltipStyle(
+      threshold: 20,
+    ),
+    forceYAxisFromZero: false,
+    crosshair: CrosshairConfig(
+      enabled: true,
+      lineColor: Colors.grey.withOpacity(0.5),
+    ),
+  );
+
+  return MultiLineChart(
+    series: series,
+    style: style,
+    height: 700,
+    width: 800,
+    enableZoom: true,
+    enablePan: true,
+    // startYAxisFromZero: true,
+    onPointTap: (point) &#123
+      // print('Tapped point: $&#123 point.value&#125');
+      &#125,
+  );
+  </code></pre>
 
   <h2>Properties</h2>
 
-  <h3>BarChartData</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>value</td>
-        <td>double</td>
-        <td>Value of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>label</td>
-        <td>String</td>
-        <td>Name of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>color</td>
-        <td>Color?</td>
-        <td>Color of the bar</td>
-        <td>Colors.blue</td>
-      </tr>
-    </tbody>
-  </table>
+<h3>MultiLineChart</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ChartDataPoint</td>
+      <td>Represents a single data point with a value, optional label, and color.</td>
+    </tr>
+    <tr>
+      <td>MultiLineTooltipStyle</td>
+      <td>Configures the appearance of tooltips shown on the chart.</td>
+    </tr>
+    <tr>
+      <td>ChartSeries</td>
+      <td>Represents a series of data points, with optional line smoothing, colors, and line width.</td>
+    </tr>
+    <tr>
+      <td>MultiLineChartStyle</td>
+      <td>Styling configuration for the chart, including colors, grid settings, and animations.</td>
+    </tr>
+    <tr>
+      <td>_LegendItem</td>
+      <td>Internal class representing a legend item with text and color.</td>
+    </tr>
+    <tr>
+      <td>LegendPosition</td>
+      <td>Enum defining the position of the legend (top, bottom, left, right).</td>
+    </tr>
+    <tr>
+      <td>ChartAnimation</td>
+      <td>Configures animation settings for the chart rendering.</td>
+    </tr>
+    <tr>
+      <td>CrosshairConfig</td>
+      <td>Configures crosshair display settings, including color, width, and label visibility.</td>
+    </tr>
+    <tr>
+      <td>MultiLineChart</td>
+      <td>The main widget for displaying multiple line series with interactive and styling options.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <h3>BarChartStyle</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>gridColor</td>
-        <td>Color</td>
-        <td>Color of the grid</td>
-        <td>Colors.grey</td>
-      </tr>
-      <tr>
-        <td>backgroundColor</td>
-        <td>Color</td>
-        <td>Chart background color</td>
-        <td>Colors.white</td>
-      </tr>
-      <tr>
-        <td>labelStyle</td>
-        <td>TextStyle?</td>
-        <td>Text style for bar labels</td>
-        <td>null</td>
-      </tr>
-      <!-- Add more style properties -->
-    </tbody>
-  </table>
+<h3>ChartDataPoint</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>double</td>
+      <td>The Y-axis value of the data point.</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>String?</td>
+      <td>Optional label associated with the data point.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Color?</td>
+      <td>Optional color for the data point.</td>
+    </tr>
+  </tbody>
+</table>
 
-  <h2>Features</h2>
-  <ul>
-    <li>📊 Animated bars with hover and tap interactions</li>
-    <li>🏷️ Customizable bar colors and labels</li>
-    <li>📏 Optional gridlines and padding</li>
-    <li>🕒 Animation support with curve control</li>
-    <li>🌈 Gradient or solid color options</li>
-  </ul>
+<h3>MultiLineTooltipStyle</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>textStyle</td>
+      <td>TextStyle</td>
+      <td>Style for tooltip text.</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>Color</td>
+      <td>Background color for the tooltip.</td>
+    </tr>
+    <tr>
+      <td>padding</td>
+      <td>double</td>
+      <td>Padding inside the tooltip.</td>
+    </tr>
+    <tr>
+      <td>threshold</td>
+      <td>double</td>
+      <td>Distance threshold for showing tooltip.</td>
+    </tr>
+    <tr>
+      <td>borderRadius</td>
+      <td>double</td>
+      <td>Radius for rounded tooltip corners.</td>
+    </tr>
+    <tr>
+      <td>shadowColor</td>
+      <td>Color</td>
+      <td>Color of the tooltip shadow.</td>
+    </tr>
+    <tr>
+      <td>shadowBlurRadius</td>
+      <td>double</td>
+      <td>Blur radius for tooltip shadow.</td>
+    </tr>
+    <tr>
+      <td>indicatorHeight</td>
+      <td>double</td>
+      <td>Height of the indicator shown on tooltip hover.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>ChartSeries</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>String</td>
+      <td>Name of the series.</td>
+    </tr>
+    <tr>
+      <td>dataPoints</td>
+      <td>List&lt;ChartDataPoint&gt;</td>
+      <td>List of data points in the series.</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Color?</td>
+      <td>Color of the series line.</td>
+    </tr>
+    <tr>
+      <td>showPoints</td>
+      <td>bool?</td>
+      <td>Whether to show points on the line.</td>
+    </tr>
+    <tr>
+      <td>smoothLine</td>
+      <td>bool?</td>
+      <td>Whether to smooth the line between points.</td>
+    </tr>
+    <tr>
+      <td>lineWidth</td>
+      <td>double?</td>
+      <td>Width of the line.</td>
+    </tr>
+    <tr>
+      <td>pointSize</td>
+      <td>double?</td>
+      <td>Size of points if showPoints is enabled.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>MultiLineChartStyle</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>colors</td>
+      <td>List&lt;Color&gt;</td>
+      <td>Colors used for multiple series.</td>
+    </tr>
+    <tr>
+      <td>defaultLineWidth</td>
+      <td>double</td>
+      <td>Default width for series lines.</td>
+    </tr>
+    <tr>
+      <td>defaultPointSize</td>
+      <td>double</td>
+      <td>Default size for data points.</td>
+    </tr>
+    <tr>
+      <td>gridColor</td>
+      <td>Color</td>
+      <td>Color of grid lines.</td>
+    </tr>
+    <tr>
+      <td>backgroundColor</td>
+      <td>Color</td>
+      <td>Background color for the chart area.</td>
+    </tr>
+    <tr>
+      <td>labelStyle</td>
+      <td>TextStyle?</td>
+      <td>Style for axis labels.</td>
+    </tr>
+    <tr>
+      <td>legendStyle</td>
+      <td>TextStyle?</td>
+      <td>Style for legend text.</td>
+    </tr>
+    <tr>
+      <td>smoothLines</td>
+      <td>bool</td>
+      <td>Enable smooth lines for all series.</td>
+    </tr>
+    <tr>
+      <td>padding</td>
+      <td>EdgeInsets</td>
+      <td>Padding around the chart.</td>
+    </tr>
+    <tr>
+      <td>showPoints</td>
+      <td>bool</td>
+      <td>Whether to display points on lines.</td>
+    </tr>
+    <tr>
+      <td>showGrid</td>
+      <td>bool</td>
+      <td>Whether to show grid lines.</td>
+    </tr>
+    <tr>
+      <td>showLegend</td>
+      <td>bool</td>
+      <td>Whether to show the legend.</td>
+    </tr>
+    <tr>
+      <td>gridLineWidth</td>
+      <td>double</td>
+      <td>Width of grid lines.</td>
+    </tr>
+    <tr>
+      <td>horizontalGridLines</td>
+      <td>int</td>
+      <td>Number of horizontal grid lines.</td>
+    </tr>
+    <tr>
+      <td>animation</td>
+      <td>ChartAnimation</td>
+      <td>Configuration for chart animations.</td>
+    </tr>
+    <tr>
+      <td>legendPosition</td>
+      <td>LegendPosition</td>
+      <td>Position of the legend on the chart.</td>
+    </tr>
+    <tr>
+      <td>crosshair</td>
+      <td>CrosshairConfig?</td>
+      <td>Configuration for crosshair display.</td>
+    </tr>
+    <tr>
+      <td>forceYAxisFromZero</td>
+      <td>bool</td>
+      <td>Whether to start Y-axis from zero.</td>
+    </tr>
+    <tr>
+      <td>tooltipStyle</td>
+      <td>TooltipStyle</td>
+      <td>Style configuration for tooltips.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>ChartAnimation</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>duration</td>
+      <td>Duration</td>
+      <td>Duration of the animation for rendering.</td>
+    </tr>
+    <tr>
+      <td>curve</td>
+      <td>Curve</td>
+      <td>Curve of the animation.</td>
+    </tr>
+    <tr>
+      <td>enabled</td>
+      <td>bool</td>
+      <td>Whether to enable the animation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>CrosshairConfig</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>lineColor</td>
+      <td>Color</td>
+      <td>Color of the crosshair line.</td>
+    </tr>
+    <tr>
+      <td>lineWidth</td>
+      <td>double</td>
+      <td>Width of the crosshair line.</td>
+    </tr>
+    <tr>
+      <td>enabled</td>
+      <td>bool</td>
+      <td>Whether to enable the crosshair.</td>
+    </tr>
+    <tr>
+      <td>showLabel</td>
+      <td>bool</td>
+      <td>Whether to display labels on crosshair.</td>
+    </tr>
+    <tr>
+      <td>labelStyle</td>
+      <td>TextStyle?</td>
+      <td>Style for crosshair labels.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>MultiLineChart</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>series</td>
+      <td>List&lt;ChartSeries&gt;</td>
+      <td>List of series to display in the chart.</td>
+    </tr>
+    <tr>
+      <td>style</td>
+      <td>ChartStyle</td>
+      <td>Styling configuration for the chart.</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>double?</td>
+      <td>Height of the chart widget.</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>double?</td>
+      <td>Width of the chart widget.</td>
+    </tr>
+    <tr>
+      <td>onPointTap</td>
+      <td>ValueChanged&lt;ChartDataPoint&gt;?</td>
+      <td>Callback for point tap interaction.</td>
+    </tr>
+    <tr>
+      <td>onChartTap</td>
+      <td>ValueChanged&lt;Offset&gt;?</td>
+      <td>Callback for tapping anywhere on the chart.</td>
+    </tr>
+    <tr>
+      <td>enableZoom</td>
+      <td>bool</td>
+      <td>Enables zoom functionality on the chart.</td>
+    </tr>
+    <tr>
+      <td>enablePan</td>
+      <td>bool</td>
+      <td>Enables pan functionality on the chart.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Features</h2>
+<ul>
+    <li>📈 Multiple Series Support</li>
+    <li>✨ Smooth Line Transitions</li>
+    <li>🎨 Customizable Color Palettes</li>
+    <li>🔍 Interactive Tooltips</li>
+    <li>📊 Clickable Legends for Series Selection</li>
+    <li>🗺️ Panning and Zooming Capabilities</li>
+    <li>📏 Grid Lines for Easy Reading</li>
+    <li>🔄 Animated Drawing of Lines</li>
+    <li>🗓️ Crosshair for Precision Tracking</li>
+    <li>📅 X and Y-Axis Label Customization</li>
+</ul>
 
   <h2>Examples</h2>
 
