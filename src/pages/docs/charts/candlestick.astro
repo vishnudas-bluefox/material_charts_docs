@@ -3,112 +3,364 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 
 <DocsLayout title="Bar Chart - Material Charts">
-  <h1>Bar Chart</h1>
+  <h1>Candlestick Chart</h1>
 
-  <p>The Bar Chart component allows you to create beautiful, animated bar charts with customizable styles and interactions.</p>
+  <p>The Candlestick Chart in the <a href="https://pub.dev/packages/material_charts" >Material Charts Flutter package </a> is a powerful visualization tool specifically designed for developers looking to represent financial data and market trends in their Flutter applications. This charting solution effectively displays price movements over time, showcasing open, high, low, and close values for each time period, making it ideal for analyzing stock prices, cryptocurrency trends, and other financial metrics. With customizable colors for bullish and bearish candles, interactive tooltips, and smooth animations, the Candlestick Chart enhances user engagement and provides clear insights into market behavior. Perfect for trading platforms, financial dashboards, and any application that requires effective data representation, the Candlestick Chart empowers developers to create a compelling user experience while delivering critical financial information.</p>
 
-  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Bar Chart Example" class="example-image" />
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/candle_chart.gif" alt="Candlestick Chart Example" class="example-image" />
 
   <h2>Usage</h2>
 
   <pre><code>import 'package:flutter/material.dart';
-import 'package:material_charts/material_charts.dart';
+    import 'package:material_charts_tests/material_charts.dart';
+    
+    
+    List &ltCandlestickData&gt volatileStockData = [
+        CandlestickData(
+          date: DateTime(2024, 1, 1),
+          open: 100,
+          high: 110,
+          low: 95,
+          close: 105,
+        ),
+        ...
+      ];
+    MaterialCandlestickChart(
+        data: volatileStockData,
+        width: 400,
+        height: 300,
+        backgroundColor: Color.fromRGBO(39, 50, 51, 1),
+        style: const CandlestickStyle(
+          verticalLineColor: Colors.white,
+          verticalLineWidth: 1,
+          bullishColor: Color.fromARGB(255, 66, 148, 69),
+          bearishColor: Color.fromARGB(255, 185, 51, 42),
+          candleWidth: 2,
+          spacing: 0.2,
+          tooltipStyle: TooltipStyle(
+            backgroundColor: Colors.grey,
+            textStyle: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
+            ),
+            borderRadius: 10,
+          ),
+        ),
+        axisConfig: const ChartAxisConfig(
+          labelStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 10,
+            fontWeight: FontWeight.w500,
+          ),
+          priceDivisions: 5,
+          dateDivisions: 6,
+        ),
+        showGrid: true,
+      );</code></pre>
 
-MaterialBarChart(
-  data: [
-    BarChartData(value: 30, label: 'Apples', color: Colors.red),
-    BarChartData(value: 70, label: 'Oranges'),
-    BarChartData(value: 50, label: 'Bananas', color: Colors.yellow),
-  ],
-  style: BarChartStyle(
-    gridColor: Colors.grey.shade300,
-    backgroundColor: Colors.white,
-    labelStyle: TextStyle(fontSize: 14),
-    valueStyle: TextStyle(fontSize: 12),
-    barSpacing: 0.3,
-    cornerRadius: 6.0,
-    gradientEffect: true,
-    gradientColors: [Colors.purple, Colors.cyan],
-  ),
-  showGrid: true,
-  showValues: true,
-);</code></pre>
+      <h2>Properties</h2>
 
-  <h2>Properties</h2>
-
-  <h3>BarChartData</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>value</td>
-        <td>double</td>
-        <td>Value of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>label</td>
-        <td>String</td>
-        <td>Name of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>color</td>
-        <td>Color?</td>
-        <td>Color of the bar</td>
-        <td>Colors.blue</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>BarChartStyle</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>gridColor</td>
-        <td>Color</td>
-        <td>Color of the grid</td>
-        <td>Colors.grey</td>
-      </tr>
-      <tr>
-        <td>backgroundColor</td>
-        <td>Color</td>
-        <td>Chart background color</td>
-        <td>Colors.white</td>
-      </tr>
-      <tr>
-        <td>labelStyle</td>
-        <td>TextStyle?</td>
-        <td>Text style for bar labels</td>
-        <td>null</td>
-      </tr>
-      <!-- Add more style properties -->
-    </tbody>
-  </table>
+      <h3>CandleStickChart</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CandlestickData</td>
+            <td>Represents data for a single candlestick, including opening, high, low, closing prices, and optional volume.</td>
+          </tr>
+          <tr>
+            <td>TooltipStyle</td>
+            <td>Configuration class for styling tooltips displayed on the chart.</td>
+          </tr>
+          <tr>
+            <td>CandlestickStyle</td>
+            <td>Configuration class for customizing the appearance of the candlestick chart, including colors and sizes.</td>
+          </tr>
+          <tr>
+            <td>ChartAxisConfig</td>
+            <td>Configuration for chart axes, including divisions, label styles, and custom formatters.</td>
+          </tr>
+          <tr>
+            <td>MaterialCandlestickChart</td>
+            <td>The main widget that renders the candlestick chart with data, styles, and configuration options.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>MaterialCandlestickChart</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>data</td>
+            <td>List&lt;CandlestickData&gt;</td>
+            <td>List of candlestick data to render.</td>
+          </tr>
+          <tr>
+            <td>width</td>
+            <td>double</td>
+            <td>Width of the chart.</td>
+          </tr>
+          <tr>
+            <td>height</td>
+            <td>double</td>
+            <td>Height of the chart.</td>
+          </tr>
+          <tr>
+            <td>backgroundColor</td>
+            <td>Color?</td>
+            <td>Optional background color for the chart.</td>
+          </tr>
+          <tr>
+            <td>style</td>
+            <td>CandlestickStyle</td>
+            <td>Style configuration for the chart.</td>
+          </tr>
+          <tr>
+            <td>axisConfig</td>
+            <td>ChartAxisConfig</td>
+            <td>Axis configuration for the chart.</td>
+          </tr>
+          <tr>
+            <td>padding</td>
+            <td>EdgeInsets</td>
+            <td>Padding around the chart.</td>
+          </tr>
+          <tr>
+            <td>showGrid</td>
+            <td>bool</td>
+            <td>Flag to show or hide the grid.</td>
+          </tr>
+          <tr>
+            <td>onAnimationComplete</td>
+            <td>VoidCallback?</td>
+            <td>Callback executed when the animation completes.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>CandlestickData</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>date</td>
+            <td>DateTime</td>
+            <td>The date/time of the candlestick.</td>
+          </tr>
+          <tr>
+            <td>open</td>
+            <td>double</td>
+            <td>The opening price of the candlestick.</td>
+          </tr>
+          <tr>
+            <td>high</td>
+            <td>double</td>
+            <td>The highest price during the candlestick period.</td>
+          </tr>
+          <tr>
+            <td>low</td>
+            <td>double</td>
+            <td>The lowest price during the candlestick period.</td>
+          </tr>
+          <tr>
+            <td>close</td>
+            <td>double</td>
+            <td>The closing price of the candlestick.</td>
+          </tr>
+          <tr>
+            <td>volume</td>
+            <td>double?</td>
+            <td>Optional volume data associated with the candlestick.</td>
+          </tr>
+          <tr>
+            <td>isBullish</td>
+            <td>bool</td>
+            <td>Indicates whether the candlestick is bullish (green) or bearish (red).</td>
+       </tr>
+        </tbody>
+      </table>
+      
+      <h3>TooltipStyle</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>backgroundColor</td>
+            <td>Color</td>
+            <td>Background color of the tooltip.</td>
+          </tr>
+          <tr>
+            <td>borderColor</td>
+            <td>Color</td>
+            <td>Color of the tooltip border.</td>
+          </tr>
+          <tr>
+            <td>borderRadius</td>
+            <td>double</td>
+            <td>Radius for rounded corners of the tooltip.</td>
+          </tr>
+          <tr>
+            <td>textStyle</td>
+            <td>TextStyle</td>
+            <td>Text style used for displaying tooltip content.</td>
+          </tr>
+          <tr>
+            <td>padding</td>
+            <td>EdgeInsets</td>
+            <td>Padding inside the tooltip.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>CandlestickStyle</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>bullishColor</td>
+            <td>Color</td>
+            <td>Color used for bullish candlesticks.</td>
+          </tr>
+          <tr>
+            <td>bearishColor</td>
+            <td>Color</td>
+            <td>Color used for bearish candlesticks.</td>
+          </tr>
+          <tr>
+            <td>candleWidth</td>
+            <td>double</td>
+            <td>Width of the candlestick.</td>
+          </tr>
+          <tr>
+            <td>wickWidth</td>
+            <td>double</td>
+            <td>Width of the candlestick wick.</td>
+          </tr>
+          <tr>
+            <td>spacing</td>
+            <td>double</td>
+            <td>Spacing between candlesticks.</td>
+          </tr>
+          <tr>
+            <td>animationDuration</td>
+            <td>Duration</td>
+            <td>Duration of the animation for rendering the candlestick.</td>
+          </tr>
+          <tr>
+            <td>animationCurve</td>
+            <td>Curve</td>
+            <td>Animation curve for rendering.</td>
+          </tr>
+          <tr>
+            <td>verticalLineColor</td>
+            <td>Color</td>
+            <td>Color for the vertical line indicating the current price.</td>
+          </tr>
+          <tr>
+            <td>verticalLineWidth</td>
+            <td>double</td>
+            <td>Width of the vertical line.</td>
+          </tr>
+          <tr>
+            <td>tooltipStyle</td>
+            <td>TooltipStyle</td>
+            <td>Styling configuration for the tooltip.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>ChartAxisConfig</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>priceDivisions</td>
+            <td>int</td>
+            <td>Number of price divisions on Y-axis.</td>
+          </tr>
+          <tr>
+            <td>dateDivisions</td>
+            <td>int</td>
+            <td>Number of date divisions on X-axis.</td>
+          </tr>
+          <tr>
+            <td>labelStyle</td>
+            <td>TextStyle?</td>
+            <td>Text style for axis labels.</td>
+          </tr>
+          <tr>
+            <td>yAxisWidth</td>
+            <td>double</td>
+            <td>Width reserved for the Y-axis.</td>
+          </tr>
+          <tr>
+            <td>xAxisHeight</td>
+            <td>double</td>
+            <td>Height reserved for the X-axis.</td>
+          </tr>
+          <tr>
+            <td>priceFormatter</td>
+            <td>String Function(double)</td>
+            <td>Custom formatter for price labels.</td>
+          </tr>
+       <tr>
+            <td>dateFormatter</td>
+            <td>String Function(DateTime)</td>
+            <td>Custom formatter for date labels.</td>
+          </tr>
+        </tbody>
+      </table>
 
   <h2>Features</h2>
-  <ul>
-    <li>📊 Animated bars with hover and tap interactions</li>
-    <li>🏷️ Customizable bar colors and labels</li>
-    <li>📏 Optional gridlines and padding</li>
-    <li>🕒 Animation support with curve control</li>
-    <li>🌈 Gradient or solid color options</li>
-  </ul>
+<ul>
+    <li>📊 Interactive Candlestick Visualization</li>
+    <li>📈 Bullish and Bearish Color Coding</li>
+    <li>🎨 Customizable Candle and Wick Width</li>
+    <li>📅 Date and Price Axis Configuration</li>
+    <li>🌈 Tooltip Styling Options</li>
+    <li>🔄 Animation Support with Curved Transitions</li>
+    <li>📏 Adjustable Spacing Between Candles</li>
+    <li>📊 Optional Gridlines for Clarity</li>
+    <li>📏 Configurable Y-axis and X-axis Dimensions</li>
+    <li>🖌️ Custom Price and Date Formatting</li>
+    <li>📉 Vertical Line Indicators</li>
+</ul>
 
   <h2>Examples</h2>
 
