@@ -3,112 +3,301 @@ import DocsLayout from '../../../layouts/DocsLayout.astro';
 ---
 
 <DocsLayout title="Bar Chart - Material Charts">
-  <h1>Bar Chart</h1>
+  <h1>Gantt Chart</h1>
 
-  <p>The Bar Chart component allows you to create beautiful, animated bar charts with customizable styles and interactions.</p>
+  <p>The Gantt Chart in the <a href="https://pub.dev/packages/material_charts" >Material Charts Flutter package </a> is an invaluable tool for developers seeking to visualize project timelines and task progress within their Flutter applications. This powerful charting solution allows users to represent tasks along a timeline, making it easy to track project milestones, deadlines, and dependencies at a glance. With customizable colors, interactive elements, and the ability to display detailed task information, the Gantt Chart enhances project management and collaboration. Ideal for project management tools, scheduling applications, and any scenario where task visualization is crucial, the Gantt Chart in the Material Charts package empowers developers to deliver a rich and informative user experience while effectively communicating project status and timelines.</p>
 
-  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/bar_chart.gif" alt="Bar Chart Example" class="example-image" />
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/gantt_chart_line.gif" alt="Bar Chart Example" class="example-image" />
+  <img src="https://raw.githubusercontent.com/vishnudas-bluefox/material_charts/refs/heads/master/images/gant_chart.gif" alt="Bar Chart Example" class="example-image" />
+
 
   <h2>Usage</h2>
 
   <pre><code>import 'package:flutter/material.dart';
-import 'package:material_charts/material_charts.dart';
+    import 'package:material_charts_tests/material_charts.dart';
+    
+    MaterialGanttChart exampleChart() &#123
+      // Example timeline data points
+      final timelineData = [
+        GanttData(
+          startDate: DateTime(2024, 1, 1),
+          endDate: DateTime(2024, 1, 15),
+          label: 'Project Start',
+          description: 'Initial project planning phase',
+          color: Colors.blue,
+          icon: Icons.start,
+    
+          tapContent:
+              'Additional details for the project start phase...', // Optional tap content
+        ),
+        GanttData(
+          startDate: DateTime(2024, 1, 16),
+          endDate: DateTime(2024, 1, 20),
+          label: 'Kickoff Meeting',
+          description: 'Project initiation and goal setting.',
+          color: Colors.blue,
+          icon: Icons.event,
+        ),
+        GanttData(
+          startDate: DateTime(2024, 1, 20),
+          endDate: DateTime(2024, 2, 1),
+          label: 'Design Phase',
+          description: 'UI/UX design and prototype creation.',
+          color: Colors.orange,
+          icon: Icons.design_services,
+        ),
+        GanttData(
+          startDate: DateTime(2024, 2, 1),
+          endDate: DateTime(2024, 3, 20),
+          label: 'Development Phase',
+          description: 'Implementation of core features.',
+          color: Colors.green,
+          icon: Icons.code,
+        ),
+        GanttData(
+          startDate: DateTime(2024, 3, 21),
+          endDate: DateTime(2024, 4, 5),
+          label: 'Testing & QA',
+          description: 'Bug fixing and quality checks.',
+          color: Colors.red,
+          icon: Icons.bug_report,
+        ),
+        GanttData(
+          startDate: DateTime(2024, 4, 6),
+          endDate: DateTime(2024, 4, 15),
+          tapContent: "Tap",
+          label: 'Release',
+          description: 'Deployment and client delivery.',
+          color: Colors.purple,
+          icon: Icons.rocket_launch,
+        ),
+      ];
+    
+      // Timeline chart styling
+      const style = GanttChartStyle(
+        lineColor: Color.fromRGBO(96, 125, 139, 1),
+        lineWidth: 8,
+        pointRadius: 6,
+        connectionLineWidth: 3,
+        showConnections: true,
+        pointColor: Colors.blue,
+        connectionLineColor: Colors.grey,
+        backgroundColor: Colors.white,
+        labelStyle: TextStyle(
+            fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black87),
+        dateStyle: TextStyle(fontSize: 12, color: Colors.grey),
+        animationDuration: Duration(seconds: 2),
+        animationCurve: Curves.easeInOut,
+        verticalSpacing: 90.0, // Adjust spacing for readability
+        // horizontalPadding: 120.0,
+      );
+    
+      // Create the timeline chart widget
+      return MaterialGanttChart(
+        data: timelineData,
+        width: 700,
+        height: 800,
+        style: style,
+        onPointTap: (point) &#123
+          debugPrint('Tapped on $&#123point.label&#125');
+        &#125,
+      );
+    &#125
+    </code></pre>
 
-MaterialBarChart(
-  data: [
-    BarChartData(value: 30, label: 'Apples', color: Colors.red),
-    BarChartData(value: 70, label: 'Oranges'),
-    BarChartData(value: 50, label: 'Bananas', color: Colors.yellow),
-  ],
-  style: BarChartStyle(
-    gridColor: Colors.grey.shade300,
-    backgroundColor: Colors.white,
-    labelStyle: TextStyle(fontSize: 14),
-    valueStyle: TextStyle(fontSize: 12),
-    barSpacing: 0.3,
-    cornerRadius: 6.0,
-    gradientEffect: true,
-    gradientColors: [Colors.purple, Colors.cyan],
-  ),
-  showGrid: true,
-  showValues: true,
-);</code></pre>
+    <h2>Properties</h2>
 
-  <h2>Properties</h2>
+    <h3>GanttData</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>startDate</td>
+          <td>DateTime</td>
+          <td>Start date of the task</td>
+          <td>Required</td>
+        </tr>
+        <tr>
+          <td>endDate</td>
+          <td>DateTime</td>
+          <td>End date of the task</td>
+          <td>Required</td>
+        </tr>
+        <tr>
+          <td>label</td>
+          <td>String</td>
+          <td>Name or label of the task</td>
+          <td>Required</td>
+        </tr>
+        <tr>
+          <td>description</td>
+          <td>String?</td>
+          <td>Optional description of the task</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>color</td>
+          <td>Color?</td>
+          <td>Color used to represent the task</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>IconData?</td>
+          <td>Icon associated with the task</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>tapContent</td>
+          <td>String?</td>
+          <td>Content displayed when tapping the task</td>
+          <td>null</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>GanttChartStyle</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>lineColor</td>
+          <td>Color</td>
+          <td>Color of the timeline lines</td>
+          <td>Colors.blue</td>
+        </tr>
+        <tr>
+          <td>pointColor</td>
+          <td>Color</td>
+          <td>Color of data points along the timeline</td>
+          <td>Colors.blue</td>
+        </tr>
+        <tr>
+          <td>connectionLineColor</td>
+          <td>Color</td>
+          <td>Color of connecting lines between tasks</td>
+          <td>Colors.grey</td>
+        </tr>
+        <tr>
+          <td>backgroundColor</td>
+          <td>Color</td>
+          <td>Background color of the chart</td>
+          <td>Colors.white</td>
+        </tr>
+        <tr>
+          <td>labelStyle</td>
+          <td>TextStyle?</td>
+          <td>Text style for task labels</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>dateStyle</td>
+          <td>TextStyle?</td>
+          <td>Text style for date labels</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>descriptionStyle</td>
+          <td>TextStyle?</td>
+          <td>Text style for task descriptions</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>lineWidth</td>
+          <td>double</td>
+          <td>Thickness of the timeline lines</td>
+          <td>2.0</td>
+        </tr>
+        <tr>
+          <td>pointRadius</td>
+          <td>double</td>
+          <td>Radius of data points</td>
+          <td>4.0</td>
+        </tr>
+        <tr>
+          <td>connectionLineWidth</td>
+          <td>double</td>
+          <td>Width of connecting lines</td>
+          <td>1.0</td>
+        </tr>
+        <tr>
+          <td>animationDuration</td>
+          <td>Duration</td>
+          <td>Duration of animation transitions</td>
+          <td>Duration(milliseconds: 1500)</td>
+        </tr>
+        <tr>
+          <td>animationCurve</td>
+          <td>Curve</td>
+          <td>Curve used for animations</td>
+     <td>Curves.easeInOut</td>
+        </tr>
+        <tr>
+          <td>showConnections</td>
+          <td>bool</td>
+          <td>Whether to display connections between tasks</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>dateFormat</td>
+          <td>DateFormat?</td>
+          <td>Format for displaying dates</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>verticalSpacing</td>
+          <td>double</td>
+          <td>Space between timeline rows</td>
+          <td>120.0</td>
+        </tr>
+        <tr>
+          <td>horizontalPadding</td>
+          <td>double</td>
+          <td>Padding between tasks and chart boundaries</td>
+          <td>32.0</td>
+        </tr>
+        <tr>
+          <td>labelOffset</td>
+          <td>double</td>
+          <td>Offset for task labels</td>
+          <td>25.0</td>
+        </tr>
+        <tr>
+          <td>timelineYOffset</td>
+          <td>double</td>
+          <td>Offset for the vertical position of the timeline</td>
+          <td>60.0</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <h3>BarChartData</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>value</td>
-        <td>double</td>
-        <td>Value of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>label</td>
-        <td>String</td>
-        <td>Name of the bar</td>
-        <td>Required</td>
-      </tr>
-      <tr>
-        <td>color</td>
-        <td>Color?</td>
-        <td>Color of the bar</td>
-        <td>Colors.blue</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>BarChartStyle</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>gridColor</td>
-        <td>Color</td>
-        <td>Color of the grid</td>
-        <td>Colors.grey</td>
-      </tr>
-      <tr>
-        <td>backgroundColor</td>
-        <td>Color</td>
-        <td>Chart background color</td>
-        <td>Colors.white</td>
-      </tr>
-      <tr>
-        <td>labelStyle</td>
-        <td>TextStyle?</td>
-        <td>Text style for bar labels</td>
-        <td>null</td>
-      </tr>
-      <!-- Add more style properties -->
-    </tbody>
-  </table>
-
-  <h2>Features</h2>
-  <ul>
-    <li>📊 Animated bars with hover and tap interactions</li>
-    <li>🏷️ Customizable bar colors and labels</li>
-    <li>📏 Optional gridlines and padding</li>
-    <li>🕒 Animation support with curve control</li>
-    <li>🌈 Gradient or solid color options</li>
-  </ul>
+    <h2>Features</h2>
+    <ul>
+        <li>🗓️ Task Timeline Visualization</li>
+        <li>📊 Interactive Task Bars</li>
+        <li>🏷️ Customizable Labels</li>
+        <li>🔄 Drag-and-Drop Functionality</li>
+        <li>🎨 Custom Color Schemes</li>
+        <li>📅 Date Range Filtering</li>
+        <li>🕒 Animation Support</li>
+        <li>♿ Accessibility Support</li>
+        <li>🎯 Highlighting Current Tasks</li>
+        <li>🌟 Custom Milestones</li>
+    </ul>
 
   <h2>Examples</h2>
 
