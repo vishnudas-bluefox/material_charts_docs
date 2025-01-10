@@ -2,43 +2,47 @@
 import DocsLayout from '../../layouts/DocsLayout.astro';
 ---
 
-<DocsLayout title="Installation - Material Charts">
-  <h1>Overview of Material Charts in Flutter</h1>
-  
-  <p><strong>Material Charts</strong> is a powerful and versatile Flutter package that provides a comprehensive suite of charting options, including Line Charts, Pie Charts, Bar Charts, CandleStick Charts, Gantt Charts, and more. Designed with a focus on customization, interactivity, and smooth animations, Material Charts stands out as a leading choice for developers looking to integrate visually appealing and functional data visualizations into their Flutter applications.</p>
+<DocsLayout title="Best Practices for Contributing to Material Charts">
+  <h1>Best Practices for Contributing to Material Charts</h1>
 
-  <h2>Key Features of Material Charts</h2>
+  <h2>1. Responsive Design</h2>
+  <p>Ensure that your contributions support responsive design principles. Use flexible widths and heights for charts to accommodate various screen sizes and orientations. Always test your changes on multiple devices to guarantee a consistent user experience across platforms. Consider using layout builders or media queries to adapt the chart's size and layout dynamically.</p>
 
-  <ul>
-    <li><strong>Diverse Chart Types:</strong> Material Charts supports a wide range of chart types, making it suitable for various data visualization needs. From simple bar and line charts to complex Gantt and candlestick charts, it covers a broad spectrum of use cases.</li>
-    <li><strong>Customization:</strong> Each chart type comes with extensive customization options, allowing developers to tailor the appearance and behavior of charts to fit their application's design and user experience requirements. This includes customizable colors, labels, animations, and more.</li>
-    <li><strong>Smooth Animations:</strong> Material Charts offers smooth animations that enhance user engagement and provide a more dynamic experience when interacting with data.</li>
-    <li><strong>Real-Time Data Updates:</strong> The package supports real-time data updates, making it ideal for applications that require live data visualization, such as financial dashboards or monitoring systems.</li>
-    <li><strong>Accessibility Support:</strong> Material Charts is designed with accessibility in mind, ensuring that charts are usable by all users, including those with disabilities.</li>
-  </ul>
+  <h2>2. Performance Optimization</h2>
+  <p>When implementing new features or enhancements, prioritize performance. Avoid using datasets larger than 100 bars to maintain smooth rendering and responsiveness. Additionally, utilize smooth animations judiciously to enhance user experience without compromising performance. Profile your code to identify bottlenecks and optimize rendering times, especially for complex charts.</p>
 
-  <h2>Comparison with Other Popular Flutter Chart Libraries</h2>
+  <h2>3. Accessibility Considerations</h2>
+  <p>Make accessibility a priority in your contributions. Provide clear labels and ensure that color choices have sufficient contrast to be easily readable by all users, including those with visual impairments. Where applicable, add meaningful alt text to charts and visual elements to improve usability for screen reader users. Implement keyboard navigation and focus management to enhance accessibility for users relying on assistive technologies.</p>
 
-  <p>While there are several charting libraries available for Flutter, such as <strong>fl_chart</strong>, <strong>charts_flutter</strong>, and <strong>syncfusion_flutter_charts</strong>, Material Charts distinguishes itself in several key areas:</p>
+  <h2>4. Consistent Styling</h2>
+  <p>Maintain a consistent visual style across all chart types. Use a unified color palette and typography to create a cohesive look and feel. This consistency helps users quickly understand and interpret the data presented in different charts. Consider providing default styles that can be easily overridden by developers for customization.</p>
 
-  <h3>1. Ease of Use</h3>
-  <p><strong>Material Charts:</strong> Offers a straightforward API that simplifies the process of creating and customizing charts. The documentation is comprehensive, providing clear examples and usage guidelines.</p>
-  <p><strong>Other Libraries:</strong> Some libraries may have steeper learning curves or require more boilerplate code to achieve similar results.</p>
+  <h2>5. Comprehensive Documentation</h2>
+  <p>Ensure that all new features and changes are accompanied by thorough documentation. This includes usage examples, API references, and explanations of any new parameters or configurations. Clear documentation helps users understand how to implement and utilize the charts effectively, reducing the learning curve and enhancing user satisfaction.</p>
 
-  <h3>2. Customization Options</h3>
-  <p><strong>Material Charts:</strong> Provides extensive customization options for each chart type, allowing developers to modify nearly every aspect of the charts, from colors to animations.</p>
-  <p><strong>Other Libraries:</strong> While many libraries offer customization, they may not provide the same level of detail or flexibility as Material Charts.</p>
+  <h2>6. Robust Testing</h2>
+  <p>Implement unit tests and integration tests for any new features or bug fixes. Testing ensures that your contributions work as intended and helps prevent regressions in future updates. Aim for high test coverage, particularly for complex functionalities, and consider using automated testing tools to streamline the testing process.</p>
 
-  <h3>3. Performance</h3>
-  <p><strong>Material Charts:</strong> Optimized for performance, ensuring smooth rendering even with larger datasets. The animations are designed to be efficient, enhancing the user experience without compromising performance.</p>
-  <p><strong>Other Libraries:</strong> Performance can vary significantly between libraries, with some struggling to handle larger datasets or complex animations.</p>
+  <h2>7. Version Control and Branching</h2>
+  <p>Follow best practices for version control when contributing to the project. Create separate branches for each feature or bug fix, and keep your commits focused and atomic. This approach makes it easier for maintainers to review your changes and helps maintain a clean project history.</p>
 
-  <h3>4. Community and Support</h3>
-  <p><strong>Material Charts:</strong> Actively maintained with a growing community of users and contributors. The support channels, including GitHub issues and email support, are responsive and helpful.</p>
-  <p><strong>Other Libraries:</strong> Some libraries may have less active communities or slower response times for support.</p>
+  <h2>8. Engage with the Community</h2>
+  <p>Actively participate in discussions within the project's community. Share your ideas, ask for feedback, and collaborate with other contributors. Engaging with the community fosters a collaborative environment and can lead to valuable insights and improvements for the project.</p>
 
-  
+  <h2>9. Stay Updated</h2>
+  <p>Keep abreast of the latest developments in the Flutter ecosystem and the Material Charts package. Regularly check for updates, new features, and best practices in Flutter development. Staying informed will help you make relevant contributions that align with current trends and user needs.</p>
+
+  <h2>10. Respect Project Guidelines</h2>
+  <p>Familiarize yourself with the project's contribution guidelines and adhere to them closely. This includes following coding standards, using the appropriate issue templates, and respecting the project's code of conduct. By doing so, you contribute to a positive and productive environment for all contributors.</p>
+
+  <p>By following these best practices, you can help ensure that the Material Charts package remains a high-quality, user-friendly tool for developers and end-users alike. Your contributions will play a crucial role in enhancing the overall functionality, performance, and accessibility of the library. Thank you for being a part of the Material Charts community!</p>
+
+  <nav style="margin-top: 2rem; display: flex; justify-content: space-between;">
+    <a href="/docs/charts/area" style="text-decoration: none; color: #228be6;">← Previous Page: Area Chart</a>
+    <a href="/docs/troubleshooting" style="text-decoration: none; color: #228be6;">Next Page: Troubleshooting →</a>
+  </nav>
 </DocsLayout>
+
 
 <style>
   h1 {
